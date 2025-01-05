@@ -1,8 +1,13 @@
-// Initialize textLines based on the current page
 let textLines = [];
 const currentPage = window.location.pathname.split("/").pop();
 
-if (currentPage === "home.html") {
+console.log("Current Page:", currentPage); // Debugging log
+
+if (
+  currentPage === "home.html" ||
+  currentPage === "index.html" ||
+  currentPage === ""
+) {
   textLines = [
     "Welcome!",
     "I'm a developer and systems administrator with a passion for creating highly robust and distributed systems.",
@@ -11,7 +16,7 @@ if (currentPage === "home.html") {
 } else if (currentPage === "about.html") {
   textLines = [
     "Hi there! I'm a student at Universidad de Belgrano.",
-    "My passion lies in networking and building applications for bussiness,",
+    "My passion lies in networking and building applications for business,",
     "and I’m always looking for new challenges to solve.",
     "When I’m not coding, you can find me either gaming or training,",
     "staying sharp both mentally and physically.",
@@ -20,39 +25,16 @@ if (currentPage === "home.html") {
   ];
 }
 
-// Typing effect function
-function typeEffect(element, textLines) {
-  let lineIndex = 0;
-  let charIndex = 0;
-  const typingSpeed = 5; // Speed of typing in milliseconds
-  const lineDelay = 300; // Delay before starting the next line
-
-  function typeLine() {
-    if (lineIndex < textLines.length) {
-      const line = textLines[lineIndex];
-      if (charIndex < line.length) {
-        element.innerHTML += line[charIndex]; // Append each character
-        charIndex++;
-        setTimeout(typeLine, typingSpeed);
-      } else {
-        // Add line break after the current line
-        element.innerHTML += "<br>"; // Ensure line break
-        charIndex = 0;
-        lineIndex++;
-        setTimeout(typeLine, lineDelay);
-      }
-    }
-  }
-
-  typeLine(); // Start typing effect
+if (!textLines.length) {
+  console.error(
+    "textLines is not properly initialized. Current Page:",
+    currentPage
+  );
 }
 
-// Initialize the effect after the DOM is loaded
 document.addEventListener("DOMContentLoaded", () => {
   const typingElement = document.querySelector(".typing-effect");
   if (typingElement && textLines.length > 0) {
-    typeEffect(typingElement, textLines); // Call typeEffect only if textLines is valid
-  } else {
-    console.error("textLines is not properly initialized or empty.");
+    typeEffect(typingElement, textLines);
   }
 });
