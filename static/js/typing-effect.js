@@ -28,10 +28,14 @@ function typeEffect(element, textLines) {
 // Function to initialize textLines based on the current page
 function initializeTextLines() {
   let textLines = [];
-  const currentPage = window.location.pathname.split("/").pop(); // Get current page filename
+  const currentPage = window.location.pathname
+    .split("/")
+    .pop()
+    .replace(/\/$/, ""); // Trim trailing slash if present
 
   console.log("Current Page:", currentPage); // Debugging log
 
+  // Check if current page is 'home.html' or 'index.html' (for both homepage cases)
   if (
     currentPage === "home.html" ||
     currentPage === "index.html" ||
