@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Loading...</title>
+  <link rel="icon" href="../static/images/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="../static/css/background.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/alphardex/aqua.css@master/dist/aqua.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(ellipse at bottom, #0d1d31 0%, #0c0d13 100%);
+      color: #00ff00;
+      font-family: 'Press Start 2P', Courier, monospace;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative; /* Enable stacking context for the noise overlay */
+    }
+
+    .loading-text {
+      font-size: 2rem;
+      text-align: center;
+      z-index: 1; /* Place above the noise effect */
+    }
+
+    .loading-text span {
+      display: inline-block;
+      animation: blink 1s steps(2, start) infinite;
+    }
+
+    @keyframes blink {
+      from, to {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+      }
+    }
+
+    /* Static Noise Overlay */
+    .noise-wrapper {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0; /* Behind the content */
+      pointer-events: none;
+    }
+
+    .noise {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent url('https://www.dropbox.com/s/h7ab1c82ctzy83n/noise.png?raw=1') repeat;
+      opacity: 0.8;
+      animation: noise 1s steps(8, end) infinite both;
+    }
+
+    @keyframes noise {
+      0% {
+        transform: translate(0, 0);
+      }
+      10% {
+        transform: translate(-100px, 100px);
+      }
+      20% {
+        transform: translate(150px, -100px);
+      }
+      30% {
+        transform: translate(-100px, 100px);
+      }
+      40% {
+        transform: translate(100px, -150px);
+      }
+      50% {
+        transform: translate(-100px, 200px);
+      }
+      60% {
+        transform: translate(-200px, -100px);
+      }
+      70% {
+        transform: translate(50px, 100px);
+      }
+      80% {
+        transform: translate(100px, -150px);
+      }
+      90% {
+        transform: translate(0, 200px);
+      }
+      100% {
+        transform: translate(-100px, 100px);
+      }
+    }
+  </style>
+</head>
+  <div class="loading-text">
+    <p>Loading<span>.</span><span>.</span><span>.</span></p>
+  </div>
+
+  <script>
+    // Array of JavaScript files to preload
+    const scriptsToPreload = [
+      '../static/js/terminal.js',
+      '../static/js/star-animation.js' // Include the new JS file
+    ];
+
+    // Function to dynamically load a script and return a promise
+    function loadScript(src) {
+      return new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.onload = resolve;
+        script.onerror = reject;
+        document.head.appendChild(script);
+      });
+    }
+
+    // Preload all scripts
+    Promise.all(scriptsToPreload.map(loadScript))
+      .then(() => {
+        // Wait for 1.5 seconds before redirecting to home.html
+        setTimeout(() => {
+          window.location.href = 'home.html';
+        }, 1500);
+      })
+      .catch(error => {
+        console.error('Error loading scripts:', error);
+        alert('Failed to load required resources. Please try again.');
+      });
+  </script>
+</body>
+</html>

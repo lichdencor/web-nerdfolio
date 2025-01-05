@@ -1,0 +1,143 @@
+/* Default styles */
+
+.tui-navbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(44, 44, 44, 0.95);
+    color: #00ff00;
+    z-index: 1000;
+    border-top: 2px solid #00ff00;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease-out, bottom 0.3s ease-out;
+}
+
+.tui-navbar.hidden {
+    transform: translateY(100%);
+}
+
+.tui-navbar ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: space-around;
+}
+
+.tui-navbar ul li {
+    cursor: pointer;
+    flex-grow: 1;
+    text-align: center;
+    border-top: 2px solid #00ff00;
+    border-right: 3px solid #00ff00;
+    position: relative;
+    width: 100%;
+    padding: 0;
+}
+
+.tui-navbar ul li:last-child {
+    border-right: none;
+}
+
+.tui-navbar ul li a {
+    display: block;
+    padding: 10px 10px;
+    color: #00ff00;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+
+.tui-navbar ul li:hover {
+    background-color: #444444;
+}
+
+.tui-navbar ul li.selected {
+    background-color: #00ff00;
+}
+
+.tui-navbar ul li.selected a {
+    color: #000000;
+}
+
+.tui-navbar ul li.selected:hover {
+    background-color: #00ff00;
+}
+
+.tui-navbar ul li.selected a:hover {
+    color: #000000;
+}
+
+.tui-navbar ul li a:hover,
+.tui-navbar ul li a:focus,
+.tui-navbar ul li a:active {
+    background-color: transparent;
+    color: #00ff00;
+}
+
+.tui-navbar ul li a:focus {
+    outline: none;
+}
+
+/* Adjustments for medium-sized phones (e.g., Galaxy A51/A71) */
+@media (max-width: 600px) {
+    .tui-navbar {
+        padding: 0;
+        margin: 0;
+        border-top: 2px solid #00ff00;
+    }
+
+    .tui-navbar ul {
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+    }
+
+    .tui-navbar ul li a {
+        font-size: 13px;
+        /* Slightly smaller text for compactness */
+        padding: 10px 6px;
+        /* Adjusted for tighter layout */
+    }
+
+    .tui-navbar ul li {
+        flex-grow: 1;
+        width: auto;
+    }
+}
+
+/* Adjustments for smaller phones (below 480px) */
+@media (max-width: 480px) {
+    .tui-navbar {
+        padding: 0;
+        /* No padding for compactness */
+        margin: 0;
+        /* No margins for tight fit */
+        border-top: 2px solid #00ff00;
+        /* Ensure clear separation from content */
+    }
+
+    .tui-navbar ul {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+
+    .tui-navbar ul li a {
+        font-size: 0.5rem;
+        /* Smaller text for mobile devices */
+        padding: 8px 2px;
+        /* Compact padding for a tight layout */
+    }
+
+    .tui-navbar ul li {
+        flex-grow: 1;
+        width: auto;
+    }
+}
+
+/* Desktop-specific adjustments */
+@media (min-width: 601px) {
+    .tui-navbar.hidden {
+        transform: translateY(100%);
+    }
+}

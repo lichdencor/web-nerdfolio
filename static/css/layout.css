@@ -1,0 +1,158 @@
+.tui {
+    width: 90%;
+    max-width: 1200px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.tui-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    padding-bottom: 50px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: flex-start;
+}
+
+.row .block {
+    flex: 1 1 calc(48% - 10px);
+    border: 2px solid #00ff00;
+    background-color: rgba(44, 44, 44, 0.5);
+    padding: 16px 8px 8px;
+    margin: 10px 0;
+    position: relative;
+    border-radius: 5px;
+}
+
+.row .block:nth-child(n+3) {
+    flex: 1 1 100%;
+}
+
+.row .block h2 {
+    position: absolute;
+    top: -1em;
+    left: 10px;
+    background-color: #00ff00;
+    color: black;
+    padding: 2px 6px;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 3px;
+    transform: translateY(-50%);
+}
+
+.block-full h2 {
+    position: absolute;
+    top: -1em;
+    left: 10px;
+    background-color: #00ff00;
+    color: black;
+    padding: 2px 6px;
+    font-size: 0.9em;
+    font-weight: bold;
+    border-radius: 3px;
+    transform: translateY(-50%);
+}
+
+/* 4k screens */
+@media (min-width: 2560px) {
+
+    /* Adjust font size and line height */
+    body {
+        font-size: 1.2em;
+        /* Larger font for readability */
+        line-height: 2;
+        /* More spacing between lines */
+    }
+
+    .tui {
+        width: 95%;
+        /* Reduce dead space on sides */
+        max-width: 1800px;
+        /* Adjust for larger screen width */
+        font-size: 18px;
+        /* Increase font size for elements */
+        line-height: 1.8;
+        /* Improve line spacing for text blocks */
+    }
+
+    .tui-main {
+        padding: 16px;
+        /* Increase padding for better spacing */
+        gap: 20px;
+        /* Increase spacing between elements */
+    }
+
+    .row .block {
+        padding: 20px 12px;
+        /* Reduce left and right padding */
+        margin: 15px 0;
+        /* Adjust margins */
+        border-radius: 8px;
+        /* Slightly larger border radius */
+    }
+
+    .row .block h2 {
+        font-size: 1.2em;
+        top: -1.2em;
+        left: 12px;
+    }
+}
+
+/* Medium-sized devices */
+@media (max-width: 768px) {
+    .row .block {
+        flex: 1 1 calc(100% - 10px);
+        padding: 12px 8px;
+    }
+
+    .row .block h2 {
+        font-size: 0.85em;
+    }
+}
+
+/* Small devices (mobile) */
+@media (max-width: 480px) {
+    html {
+        font-size: 90%;
+        /* Reduce the root font size */
+    }
+
+    .tui {
+        font-size: 0.6rem;
+        /* Smaller scaling for mobile */
+    }
+
+    .tui-main {
+        gap: 8px;
+        /* Compact gaps */
+    }
+
+    .row {
+        flex-direction: column;
+    }
+
+    .row .block {
+        flex: 1 1 100%;
+        padding: 8px 6px;
+        /* Reduced padding */
+        margin: 5px 0;
+    }
+
+    .row .block h2 {
+        font-size: 0.75em;
+        /* Smaller font size */
+        top: -0.8em;
+        left: 6px;
+    }
+}

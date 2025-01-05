@@ -1,0 +1,11 @@
+{
+  "name": "web-portfolio",
+  "version": "1.0.0",
+  "scripts": {
+    "sass-dev": "sass --watch --update --style=expanded static/css",
+    "sass-prod": "sass --no-source-map --style=compressed static/css"
+  },
+  "devDependencies": {
+    "sass": "^1.72.0"
+  }
+}
